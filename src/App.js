@@ -29,8 +29,8 @@ const App = () => {
             <Header signedIn={signedIn} />            
             <Router>
                 <Home path="/" signedIn={signedIn} />
-                <Login path="login" signedIn={signedIn} />
-                <Edit path="edit/:id" />
+                <Login path="/login" signedIn={signedIn} />
+                <Edit path="/edit/:id" />
             </Router>
         </div>
     )

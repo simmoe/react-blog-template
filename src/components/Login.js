@@ -10,7 +10,7 @@ const Login = (props) => {
         provider.addScope('profile')
         provider.addScope('email')
 
-        firebase.auth().signInWithRedirect(provider)
+        firebase.auth().signInWithPopup(provider)
             .catch(function (error) {
                 console.log(error)
             })
