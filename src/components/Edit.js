@@ -8,10 +8,10 @@ const Edit = (props) => {
     const [status, setStatus] = useState('')
 
     useEffect( () => {
-        window.scrollTo(0, 0)        
+        window.scrollTo(0, 0)       
         firebase.firestore().collection('projects').doc(props.id)
             .onSnapshot(snapshot => {
-                setProject(snapshot.data())
+            setProject(snapshot.data())
         })
     }, [props.id])
 
@@ -28,9 +28,8 @@ const Edit = (props) => {
 
     const saveProject = (e) => {
         e.preventDefault() //abort reloading the page
-        firebase.firestore().collection('projects').doc(props.id).update({
-            title: project.title
-        })
+        setStatus('updating, please hold...')
+        firebase.firestore().collection('projects').doc(props.id).update(project)
         .then(()=>{setStatus("project updated")})
         .catch(err => {
             setStatus("Error saving project: " + err.message)
@@ -46,6 +45,8 @@ const Edit = (props) => {
             <>
             <form onSubmit={saveProject}>
                 <input name='title' onChange={updateValue} value={project.title} />
+                <input name='year' onChange={updateValue} placeholder='year' value={project.year} />
+                <textarea name='description' placeholder='description' onChange={updateValue} value={project.description} />
                 <button type='submit'>save</button>
             </form>
             <p>{status}</p>
@@ -57,3 +58,4 @@ const Edit = (props) => {
 
 
 export default Edit
+

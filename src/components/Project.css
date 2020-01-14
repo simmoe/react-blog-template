@@ -1,15 +1,20 @@
 .project{
     min-height:350px;
     padding:2rem;
-    background: #f4f4f8;
-    display:grid;
-    grid-auto-flow: column;
-    place-items:center;
+    background: #eee;
     position:relative;
   }
 
-  .project .edit-icons {
+  .project h1{
+    font-size:1.2rem;
+  }
+
+  .project .admin {
     position:absolute;
     bottom:1rem;
+    right:1rem;
+    display:grid;
+    grid-auto-flow: column;
+    gap:1rem;
 }
  

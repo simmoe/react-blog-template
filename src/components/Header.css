@@ -2,7 +2,7 @@ header{
     position:fixed;
     width: 100vw;
     height:10vh;
-    background:lightgray;
+    background:black;
     display:grid;
     grid-auto-flow: column;
     justify-content:center;
@@ -13,7 +13,7 @@ header{
   
   header a{
     text-decoration: none;
-    color:#111;
+    color:#eee;
   }
   
   [aria-current="page"] {

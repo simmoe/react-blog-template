@@ -5,8 +5,13 @@ import {Link} from '@reach/router'
 const Header = (props) => {
     return (
         <header>
-            <Link to="/">Home</Link>
-            <Link to="login">{props.user ? 'profile' : 'login'}</Link> 
+            <Link to="/">home</Link>
+            <Link to="login">{
+                props.signedIn 
+                ? 'profile' 
+                : 'login'
+                }
+            </Link> 
         </header>
     )
 }

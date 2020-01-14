@@ -1,9 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React from 'react'
 import firebase from './firebase'
 
 const Login = (props) => {
-
-    const [signedIn, setSignedIn] = useState(false)
 
     const loginWithGoogle = () => {
 
@@ -20,35 +18,19 @@ const Login = (props) => {
         localStorage.setItem("Logging in", true)
     }
 
-    useEffect( ()=> {
-        console.log('fb',firebase)
-        firebase.auth().onAuthStateChanged(
-            user => {
-                if(user){
-                    setSignedIn(true)
-                    props.setUser(user)
-                    //remove local storage variable
-                    localStorage.removeItem("Logging in")
-                }else{
-                    console.log('not signed in')
-                }
-            }
-        )
-    })
-
     return (
       <main className="login">
-        {!signedIn && (
+        {!props.signedIn && (
             <>
-                {!localStorage.getItem("Logging in") && <p onClick={loginWithGoogle}>use google to sign in</p>}
-                {localStorage.getItem("Logging in") && <p>Logger på, øjeblik...</p>}
+                {!localStorage.getItem("Logging in") && <button onClick={loginWithGoogle}>use google to sign in</button>}
+                {localStorage.getItem("Logging in") && <p>Log in progress, hold on...</p>}
             </>
         )}
-        {signedIn && (
+        {props.signedIn && (
             <div>
             <h1>You are logged in to firebase</h1>
-            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-            <p onClick={() => {firebase.auth().signOut(); setSignedIn(false); props.setUser()}}>Sign-out</p>        
+            <p>Welcome {firebase.auth().currentUser.displayName}. You are now signed-in.</p>
+            <button onClick={() => {firebase.auth().signOut(); }}>Sign-out</button>        
             {firebase.auth().currentUser.photoURL && <img src={firebase.auth().currentUser.photoURL} alt='profile' />}
             </div>
         )}
