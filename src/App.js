@@ -29,10 +29,10 @@ const App = () => {
         <div>
             <Header signedIn={signedIn} />            
             <Router>
-                <Projects path="/" signedIn={signedIn} />
-                <Contact path="/contact" signedIn={signedIn} />
-                <Login path="/login" signedIn={signedIn} />
-                <Edit path="/edit/:id" />
+                <Projects path={process.env.PUBLIC_URL + '/'} signedIn={signedIn} />
+                <Contact path={process.env.PUBLIC_URL + '/contact'} signedIn={signedIn} />
+                <Login path={process.env.PUBLIC_URL + '/login'} signedIn={signedIn} />
+                <Edit path={process.env.PUBLIC_URL + '/edit/:id'} />
             </Router>
         </div>
     )

@@ -4,13 +4,11 @@ import React, {useState, useEffect} from 'react'
 import firebase from './firebase'
 import Project from './Project'
 import {IoIosAddCircle} from 'react-icons/io'
-import { navigate } from '@reach/router'
 
 const Projects = (props) => {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
-        navigate('/')
         firebase
             .firestore()
             .collection('projects')
