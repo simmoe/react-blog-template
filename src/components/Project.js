@@ -20,7 +20,7 @@ const Project = (props) => {
             <p>{props.project.description}</p>
             {props.signedIn && 
             <div className='admin'>
-                <Link to={'/edit/' + props.id} className='edit-icons'>
+                <Link to={process.env.PUBLIC_URL + '/edit/' + props.id} className='edit-icons'>
                     <FaCode className='edit-icon' />
                 </Link>
                 <MdDelete onClick={deleteProject} className='edit-icon' />

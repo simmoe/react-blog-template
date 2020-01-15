@@ -12,6 +12,7 @@ const Projects = (props) => {
         firebase
             .firestore()
             .collection('projects')
+            .orderBy('year', 'desc')
             .onSnapshot(snapshot => 
                 setProjects(snapshot.docs)
             )
