@@ -1,3 +1,5 @@
+/* APP CSS */
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600&display=swap');
 
 *{
@@ -7,23 +9,37 @@ body{
   font-family: 'Open Sans';
 }
 
+a{
+  color:#4285F4;
+  text-decoration: none;
+}
+
 .edit-icon{
   fill:#111;
   transform:scale(1.4);
   cursor: pointer;
 }
 
-.add{
-  margin-bottom:5vh;
+.admin-actions{
+  position:fixed;
+  z-index:1;
+  width:100vw;
+  top:10vh;
+  left:0;
+  height:5vh;
+  display:grid;
+  place-items:center;
+  background:#eee;
 }
 
 main{
   min-height:100vh;
   display:grid;
   place-items:center;
+  align-content:center;
   padding:20vh;
-  position:relative;
 }
+
 main.login img{
   width:100px;
 }

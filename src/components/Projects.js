@@ -1,12 +1,16 @@
+// HOME JS
+
 import React, {useState, useEffect} from 'react'
 import firebase from './firebase'
 import Project from './Project'
 import {IoIosAddCircle} from 'react-icons/io'
+import { navigate } from '@reach/router'
 
-const Home = (props) => {
+const Projects = (props) => {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
+        navigate('/')
         firebase
             .firestore()
             .collection('projects')
@@ -26,9 +30,12 @@ const Home = (props) => {
 
     return (
         <main className='home'>
-        <div className='add' onClick={addProject}>
-            <IoIosAddCircle className='edit-icon' />
-        </div>
+        {
+            props.signedIn &&
+            <div className='admin-actions' onClick={addProject}>
+                <IoIosAddCircle className='edit-icon' />
+            </div>
+        }
 
         {
         projects.length > 0 
@@ -48,4 +55,4 @@ const Home = (props) => {
     )
 }
 
-export default Home
+export default Projects
