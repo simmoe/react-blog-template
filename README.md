@@ -1,5 +1,6 @@
 <a href='https://simmoe.github.io/react-blog-template'>See project demo on github pages</a>
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # React blog template
 This project is made for react learners, that wants to get a thorough understanding of the React project lifecycle. It demonstrates how to build a basic blog CMS with ReactJS and firebase/firestore. The final website displays a list of projects, with options to create, edit and delete them. Only the authenticated user can modify the database, everyone can see. 
