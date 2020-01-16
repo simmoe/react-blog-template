@@ -3,7 +3,7 @@
 The project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # React blog template
-This project is made for react learners, that wants to get a thorough understanding of the React project lifecycle. It demonstrates how to build a basic blog CMS with ReactJS and firebase/firestore. The final website displays a list of projects, with options to create, edit and delete them. Only the authenticated user can modify the database, everyone can see. 
+This project is made for intermediate react learners, that wants to get a thorough understanding of a React projects full lifecycle. It demonstrates how to build a basic blog CMS with ReactJS and firebase/firestore. The final website displays a list of projects, with options to create, edit and delete them. Only the authenticated user can modify the database, everyone can see. 
 
 * Template: create-react-app
 * Backend: Google Firebase.firestore
@@ -13,7 +13,9 @@ This project is made for react learners, that wants to get a thorough understand
 Of course you can't edit, create or update projects in the demo. But if you like the project, go ahead and fork it. Then you  can exchange the firebase keys in the code and create your own blog from there - tutorial below.
 
 ## Step-by-step tutorial
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). In short that means the first thing you should do, is to open your terminal and change directory to the folder you want the project to reside in. After that, simply type
+Is not the purpose of this readme. But I will go through the main concepts assuming *some* knowledge on React. The Firebase part in the beginning however, is thorough - so if you havent used React in conjunction with Firebase before, youy should be able to get well started, following this tutorial. 
+
+The project is bootstrapped with [Create React App](https://github.com/facebook/create-react-app). In short that means the first thing you should do, is to open your terminal and change directory to the folder you want the project to reside in. After that, simply type
 
 ````javascript
 npx create-react-app react-blog-template
@@ -106,8 +108,11 @@ So anyone who - logged in or not - tries to modify the database from the app, wi
 ## Routing
 The webpage has a small menu and three "subpages". A React app don't really have subpages however - we just switch between showing components. This process is called *Routing*. This project uses a project called reach/router - <a href="https://reach.tech/router">check out the excellent documentation, and also see how it is done in App.js and Header.js.</a>
 
-## Show projects
-In the database we have one *collection* called 'projects', inside that the actual projects (in Firebase lingo called documents) reside. One very smart feature of Firebase is that instead of fetching the projects collection *once*, we set up a realtime *listener* that will be invoked whwenever changes happen to the collection. This is done in Projects.js useEffect: 
+## Show projects - Projects.js and Project.js
+The architecture to show the project list is standard component based: A top component called Projects.js fetches the documents from the database and save them in state. It then runs through the list of projects using the Array.map() function, and parses each one in a subcomponent called Project.js.
+
+### Okay, so how do we get the project list from the database?
+In the database we have one *collection* called 'projects', inside that the actual projects (in Firebase lingo called documents) reside. One very smart feature of Firebase is that instead of fetching the projects collection *once*, we set up a realtime *listener* that will be invoked whwenever changes happen to the collection. This is done in Projects.js: useEffect(): 
 
 ````Javascript
 const [projects, setProjects] = useState([])
@@ -136,7 +141,7 @@ projects.map(
 -  to get the actual fields and values object, use doc.data() 
 
 ### A note on Masonry.js
-In projects.js you will notica a strange *wrapper* around the actual projects called Masonry. Masonry is a neat js/css projects that makes a nice flexible layout around a set of elements so they can have different sizes in a grid, like 
+In projects.js you will notice a strange *wrapper* around the actual projects called Masonry. Masonry is a neat js/css projects that makes a nice flexible layout around a set of elements so they can have different sizes in a grid, like 
 
 <img src='./img/mas.png' alt='Masonry js example' />
 
@@ -150,4 +155,55 @@ Then import the lib into the component where you want to use it (here, projects.
 import Masonry from 'react-masonry-css'
 ````
 And lastly use the new component (Masonry) to create the grid - don't forget to add styles as well, for instance to App.css or a Projects.css file. <a href="https://www.npmjs.com/package/react-masonry-css">Check the Masonry css react docs.</a>
+
+## Edit projects - Edit.js
+If the user is signed in, Project.js shows a small icon on each entry, that links to a path called /edit/[projectid]. This Routing concept is very smart, and comes from reach/router. In App.js you can see how the Router is setup to catch any path, that corresponds to /edit + some id string:
+````javascript
+<Edit path={process.env.PUBLIC_URL + '/edit/:id'} />
+````
+This means that the component in Edit.js will catch all these links, and at the same time get a reference to that specific document in the database. Getting that parameter is ridiculously simple: it resides in the components *props.id* property. With that id in hand, we can easily fetch the document data from Firebase, in useEffect():
+
+````javascript
+const [project, setProject] = useState() 
+useEffect( () => {
+    window.scrollTo(0, 0)       
+    firebase.firestore().collection('projects').doc(props.id)
+        .onSnapshot(snapshot => {
+        setProject(snapshot.data())
+    })
+}, [props.id])
+````
+### Binding form field values to state
+Now that we have the project data, we can build a standard HTML form, where each field carries the data from the database. We use a concept however, very widespread in React, where *any change in each of the form fields, will immediately be reflected in the components state*. What!? Well, check the form fields in Edit.js - they all have an onChange function, that generically and immediately invokes setProject() and updates the component state object. 
+
+````javascript
+const updateValue =  
+//e.persist makes the element visible in the callback function
+//the spread object syntax is JSX - makes the given value of post stay, while we update this value
+    e => {
+    e.persist()
+    setProject(prevProject => ({
+        ...prevProject,
+        [e.target.name]: e.target.value
+    }))
+}
+````
+At the same time, we must grasp a very important concept to Google firestore: *There is no scheme for a document. We can add fields to projects as we go along, just by calling the update method on a document:*
+
+````javascript
+firebase.firestore().collection('projects').doc(props.id).update(
+  { 
+    title: 'some title - if a title field exists in the database for this document, its value will be updated (if this new value is different)',
+    new: 'an entirely new field will just be added flawlessly to the document'
+  }
+)
+````
+The reason this is so smart, is that from now on we can just add any form field we like to the Edit component - the update function will handle whether to add or update new fields. 
+
+### File upload 
+Is handled using a component called react-firebase-file-uploader. The implementation is straightforward, check the docs. 
+### Saving projects
+Is simply handled using Firebase.Firestore update() method as mentioned before. 
+
+## Wrap up
 
