@@ -1,18 +1,20 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useRef} from 'react'
 import firebase from './firebase'
-
+import EditorJs from 'react-editor-js';
+import { EDITOR_JS_TOOLS } from './tools'
 
 const Edit = (props) => {
 
     const [project, setProject] = useState() 
     const [status, setStatus] = useState('')
+    const editorRef = useRef()
 
-    useEffect( () => {
+    useEffect( () => {    
         window.scrollTo(0, 0)       
         firebase.firestore().collection('projects').doc(props.id)
             .onSnapshot(snapshot => {
             setProject(snapshot.data())
-        })
+        })        
     }, [props.id])
 
     const updateValue =  
@@ -36,9 +38,34 @@ const Edit = (props) => {
         })
     }
 
+    const showMe = () => {
+        editorRef.current.instance.save()
+        .then( data => console.log(data) )
+    }
+
     return(
         <main className='edit'>
         <h1>Edit project</h1>
+
+        <EditorJs
+            tools={EDITOR_JS_TOOLS}
+            ref={editorRef}
+            onChange={ showMe }
+            data={{
+            "time" : 1554920381017,
+            "blocks" : [
+                {
+                    "type" : "header",
+                    "data" : {
+                        "text" : "Hello Editor.js",
+                        "level" : 2
+                    }
+                },
+            ],
+            "version" : "2.12.4"
+            }}
+        />
+
         <p>Project id: {props.id}</p>
         {
             project && 
