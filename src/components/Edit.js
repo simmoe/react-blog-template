@@ -37,6 +37,13 @@ const Edit = (props) => {
         })
     }
 
+    const parseThumbname = (str) => {
+        const n = str.lastIndexOf('.')
+        const name = str.slice(0, n)
+        const ending = str.slice(n, str.length)
+        return name + '_400x400' + ending
+    }
+
     const handleUploadStart = () => {setStatus('uploading image, please hold')}
     const handleUploadError = (error) => {setStatus(error.message)}
     const handleUploadSuccess = filename => {
@@ -49,7 +56,8 @@ const Edit = (props) => {
               url => setProject( prevProject => (
             {
                 ...prevProject,
-                 defaultImage: url 
+                defaultImage: url,
+                thumbnailImage:parseThumbname(url)
             }
           ) ) )
           setStatus('image ready')
@@ -66,7 +74,13 @@ const Edit = (props) => {
                 <input name='title' onChange={updateValue} value={project.title} />
                 <input name='year' onChange={updateValue} placeholder='year' value={project.year} />
                 <textarea name='description' placeholder='description' onChange={updateValue} value={project.description} />
-                {project.defaultImage && <img alt='post img' src={project.defaultImage} />}
+                {
+                    project.defaultImage && 
+                    <>
+                    <img alt='post img' src={project.defaultImage} />
+                    <img alt='post img thumb' src={project.thumbnailImage} />
+                    </>
+                }
                 <label>
                 <div className='add'>{project.defaultImage ? 'new image' : 'add image'}</div>
                 <FileUploader

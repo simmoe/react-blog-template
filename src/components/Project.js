@@ -15,7 +15,7 @@ const Project = (props) => {
     }
     return (
         <div className="project">
-            {props.project.defaultImage && <img src={props.project.defaultImage} alt='hei' />}
+            {props.project.defaultImage && <img src={props.project.thumbnailImage} alt='hei' />}
             <h1>{props.project.title}</h1>
             <div>{props.project.year}</div>
             <div>{parse(props.project.description)}</div>

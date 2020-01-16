@@ -200,10 +200,26 @@ firebase.firestore().collection('projects').doc(props.id).update(
 ````
 The reason this is so smart, is that from now on we can just add any form field we like to the Edit component - the update function will handle whether to add or update new fields. 
 
-### File upload 
-Is handled using a component called react-firebase-file-uploader. The implementation is straightforward, check the docs. 
+### File upload and Firebase Storage
+Is handled using a component called react-firebase-file-uploader. The implementation is quite straightforward, but we need to come around the conecept of storage in Firebase to understand how the module actually works. So storage is a plce in Forebase where you can save actual files - so files are not stored directly in collections and documents, instead they are saved in storage, and linked to collections and documents with a URL. 
+
+First enable Storage in the Firebase console. Then you can use the <a href="https://firebase.google.com/docs/storage">Storage api</a> to see how you manage uploading, getting a reference URL and lastly inserting that URL in a database document. See Edit.js for a working example. 
+
+
 ### Saving projects
 Is simply handled using Firebase.Firestore update() method as mentioned before. 
 
-## Wrap up
+## Creating image thumbnails using Firebase functions
+Firebase functions is the last concept used in the app. It is a set of server functions that Firebase provides - they can be used for a variety of things, in conjunction with the Firebase Machine Learning suite it can be a really powerful tool. In this project a serverside function is needed to create an image thumbnail every time a new image is uploaded.  
 
+The concept here is: a local client browser can't 'do stuff with files' - like rescaling pictures in this case. But the server can! Of course Google can add a service to their Firebase server, that ie downscales a picture as soon as its uploaded. This is excactly what we want Firebase to do in this project, so we can insert some sort of websafe image on the page even thogh we upload some monstersized image from the desktop. This is handled with Firebase functions. Follow the guide in the Firebase console. 
+
+### Checklist
+following https://www.youtube.com/watch?v=OKW8x8-qYs0
+
+-  curl -sL https://firebase.tools | bash //install firebase CLI tools
+-  firebase init //answer stuff
+-  cd functions // go into the functions dir
+-  npm i @google-cloud/storage  //install google cloud stuff
+-  npm i sharp //install the image library
+-  npm i fs-extra
