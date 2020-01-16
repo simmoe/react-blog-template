@@ -44,13 +44,7 @@ main.login img{
   width:100px;
 }
 
-main.home .projects{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap:1rem;
-}
-
-input, button, textarea {
+input, button, textarea, label .add {
   font-size:1rem;
   padding: .5rem;
   display:block;
@@ -61,8 +55,39 @@ input, textarea{
   min-width:20rem;
   background:white;
 }
+textarea{
+  min-width:60vw;
+  min-height:10rem;
+}
 button{
   color:white;
   background:black;
-  min-width:6rem;
+  min-width:8rem;
 }
+
+label .add{
+  text-align: center;
+  padding:.3rem;
+  width:8rem;
+  border:1px solid #111;
+}
+
+main.edit img{
+  width:8rem;
+  height:8rem;
+  object-fit: cover;
+  margin-bottom:1rem;
+}
+
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+ 

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import firebase from './firebase'
+import FileUploader from 'react-firebase-file-uploader'
 
 
 const Edit = (props) => {
@@ -36,6 +37,24 @@ const Edit = (props) => {
         })
     }
 
+    const handleUploadStart = () => {setStatus('uploading image, please hold')}
+    const handleUploadError = (error) => {setStatus(error.message)}
+    const handleUploadSuccess = filename => {
+        firebase
+          .storage()
+          .ref("images")
+          .child(filename)
+          .getDownloadURL()
+          .then(
+              url => setProject( prevProject => (
+            {
+                ...prevProject,
+                 defaultImage: url 
+            }
+          ) ) )
+          setStatus('image ready')
+    }
+
     return(
         <main className='edit'>
         <h1>Edit project</h1>
@@ -47,6 +66,21 @@ const Edit = (props) => {
                 <input name='title' onChange={updateValue} value={project.title} />
                 <input name='year' onChange={updateValue} placeholder='year' value={project.year} />
                 <textarea name='description' placeholder='description' onChange={updateValue} value={project.description} />
+                {project.defaultImage && <img alt='post img' src={project.defaultImage} />}
+                <label>
+                <div className='add'>{project.defaultImage ? 'new image' : 'add image'}</div>
+                <FileUploader
+                    hidden
+                    accept="image/*"
+                    name="picture"
+                    randomizeFilename
+                    storageRef={firebase.storage().ref("images")}
+                    onUploadStart={handleUploadStart}
+                    onUploadError={handleUploadError}
+                    onUploadSuccess={handleUploadSuccess}
+                />
+                </label>
+
                 <button type='submit'>save</button>
             </form>
             <p>{status}</p>

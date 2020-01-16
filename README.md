@@ -1,3 +1,4 @@
+<a href='https://simmoe.github.io/react-blog-template'>See project demo on github pages</a>
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # React blog template
@@ -8,7 +9,6 @@ This project is made for react learners, that wants to get a thorough understand
 * Routing: Reach Router
 * Authentication: Google (redirect) - only one specific person can update, delete and create projects
 
-<a href='https://simmoe.github.io/react-blog-template'>Watch a demo here</a>
 Of course you can't edit, create or update projects in the demo. But if you like the project, go ahead and fork it. Then you  can exchange the firebase keys in the code and create your own blog from there - tutorial below.
 
 ## Step-by-step tutorial

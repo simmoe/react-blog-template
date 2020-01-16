@@ -2,13 +2,18 @@
 
 .project{
     min-height:350px;
+    min-width:350px;
     padding:2rem;
     background: #eee;
     position:relative;
+    margin-bottom:2rem;
   }
 
   .project h1{
     font-size:1.2rem;
+  }
+  .project h2{
+    font-size:1rem;
   }
 
   .project .admin {
@@ -18,5 +23,8 @@
     display:grid;
     grid-auto-flow: column;
     gap:1rem;
+}
+.project img {
+  width:100%;
 }
  
