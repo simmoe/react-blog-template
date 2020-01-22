@@ -5,7 +5,6 @@ import { Link } from "@reach/router"
 import {FaCode} from 'react-icons/fa'
 import {MdDelete} from 'react-icons/md'
 import './Project.css'
-import parse from 'html-react-parser'
 
 const Project = (props) => {
     const deleteProject = () => {
@@ -14,11 +13,23 @@ const Project = (props) => {
         }
     }
     return (
+        
         <div className="project">
-            {props.project.defaultImage && <img src={props.project.thumbnailImage} alt='hei' />}
+            {
+            props.project.defaultImage && 
+                <img src={
+                    props.project.thumbnailImage 
+                    ? props.project.thumbnailImage
+                    : props.project.defaultImage
+                } alt='hei' />
+                
+            }
             <h1>{props.project.title}</h1>
-            <div>{props.project.year}</div>
-            <div>{parse(props.project.description)}</div>
+            <div className='project-year'>{props.project.year}</div>
+            <div className='project-byline'>{props.project.byline}</div>
+            <Link to={process.env.PUBLIC_URL + '/projects/' + props.id + '?signedIn=' + props.signedIn}>
+                Read more
+            </Link>
             {props.signedIn && 
             <div className='admin'>
                 <Link to={process.env.PUBLIC_URL + '/edit/' + props.id} className='edit-icons'>

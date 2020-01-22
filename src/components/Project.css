@@ -7,16 +7,18 @@
     background: #eee;
     position:relative;
     margin-bottom:2rem;
+    font-size:.9rem;
   }
 
+  .project-detail{
+    justify-content: start;
+  }
   .project h1{
-    font-size:1.2rem;
-  }
-  .project h2{
-    font-size:1rem;
+    margin:.4rem 0 .2rem 0;
+    padding:0;
   }
 
-  .project .admin {
+  .admin {
     position:absolute;
     bottom:1rem;
     right:1rem;
@@ -27,4 +29,13 @@
 .project img {
   width:100%;
 }
+
+.project-year{
+  font-weight:bold;
+}
+.project-byline{
+  text-transform: uppercase;
+  padding:1rem 0 1rem 0;
+}
+
  

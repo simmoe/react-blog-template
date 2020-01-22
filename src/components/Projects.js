@@ -5,6 +5,7 @@ import firebase from './firebase'
 import Project from './Project'
 import {IoIosAddCircle} from 'react-icons/io'
 import Masonry from 'react-masonry-css' 
+import { navigate } from '@reach/router'
 
 const Projects = (props) => {
     const [projects, setProjects] = useState([])
@@ -21,12 +22,12 @@ const Projects = (props) => {
 
     const addProject = () => {
         firebase.firestore().collection('projects').add({
-            title: 'new project',
+            title: '',
             year:2020,
             description: '',
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(ref => {
-            console.log('Added document with ID: ', ref.id)
+            navigate('/edit/' + ref.id)
         }).catch( error => console.log(error))
     } 
 
@@ -40,13 +41,13 @@ const Projects = (props) => {
         }
 
         {
-        projects.length > 0 
+            projects.length > 0 
         ? 
         <Masonry
             breakpointCols={{
                 default: 3,
-                1400: 2,
-                1000: 1
+                1500: 2,
+                1200: 1
               }}
             className="my-masonry-grid"
             columnClassName="my-masonry-grid_column">
@@ -61,6 +62,7 @@ const Projects = (props) => {
             <p>Getting projects, hold on...</p>
         }
         </main>
+
     )
 }
 
