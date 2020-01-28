@@ -1,0 +1,72 @@
+main.edit{
+    max-width:100%;
+    justify-items: left;
+}
+
+form{
+    max-width:100%;
+}
+
+input,
+button,
+textarea,
+label .add,
+select {
+    font-size: 1rem;
+    padding: .5rem;
+    display: block;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+input,
+textarea {
+    min-width: 20rem;
+    background: white;
+}
+
+textarea {
+    width: 100%;
+    min-height: 10rem;
+}
+
+button {
+    color: white;
+    background: black;
+    min-width: 8rem;
+}
+
+.checks {
+    background: #e6e6ea;
+    margin: 3rem 0 3rem 0;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    justify-content: center;
+    padding:.4rem;
+}
+
+.edit-images {
+    display: grid;
+    width:80%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: .2rem;
+    margin-bottom:1rem;
+}
+
+.edit-images > div {
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+.edit-images img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.edit-images h3 {
+    color: #e6e6ea;
+    position: absolute;
+}

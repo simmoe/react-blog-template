@@ -8,6 +8,7 @@ import Contact from "./components/Contact"
 import Login from "./components/Login"
 import Edit from "./components/Edit"
 import ProjectDetail from './components/ProjectDetail'
+import ProjectsAnimated from './components/ProjectsAnimated'
 
 const Default = () => {
     navigate('/projects')
@@ -25,7 +26,6 @@ const App = () => {
                     localStorage.removeItem("Logging in")
                 }else{
                     setSignedIn(false)
-                    console.log('not signed in')
                 }
             }
         )
@@ -34,9 +34,10 @@ const App = () => {
     return (
         <div>
             <Header signedIn={signedIn} />            
-            <Router>
+            <Router primary={false}>
                 <Default path='/' Default />
                 <Projects path={process.env.PUBLIC_URL + '/projects'} signedIn={signedIn} />
+                <ProjectsAnimated path={process.env.PUBLIC_URL + '/projects/animated'} signedIn={signedIn} />
                 <ProjectDetail path={process.env.PUBLIC_URL + '/projects/:id'} />
                 <Contact path={process.env.PUBLIC_URL + '/contact'} signedIn={signedIn} />
                 <Login path={process.env.PUBLIC_URL + '/login'} signedIn={signedIn} />

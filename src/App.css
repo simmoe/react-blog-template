@@ -5,12 +5,13 @@
 *{
   box-sizing:border-box;
 }
-body{
+body, html{
   font-family: 'Open Sans';
+  overflow-y: scroll;
 }
 
 a{
-  color:#4285F4;
+  color:#4285F4;;
   text-decoration: none;
 }
 
@@ -44,26 +45,10 @@ main.login img{
   width:100px;
 }
 
-input, button, textarea, label .add {
-  font-size:1rem;
-  padding: .5rem;
-  display:block;
-  margin-bottom:1rem;
-  cursor: pointer;
+main.animated{
+  padding:0;
 }
-input, textarea{
-  min-width:20rem;
-  background:white;
-}
-textarea{
-  min-width:60vw;
-  min-height:10rem;
-}
-button{
-  color:white;
-  background:black;
-  min-width:8rem;
-}
+
 
 label .add{
   text-align: center;
@@ -72,12 +57,6 @@ label .add{
   border:1px solid #111;
 }
 
-main.edit img{
-  width:8rem;
-  height:8rem;
-  object-fit: cover;
-  margin-bottom:1rem;
-}
 
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */

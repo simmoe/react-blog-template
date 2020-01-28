@@ -3,7 +3,7 @@
 import React, {useState} from 'react'
 import './Header.css'
 import { Link } from '@reach/router'
-import { MdMenu } from 'react-icons/md'
+import { MdMenu, MdClose } from 'react-icons/md'
 
 const Header = (props) => {
     const [show,setShow] = useState(false)
@@ -17,9 +17,16 @@ const Header = (props) => {
       }
     return (
         <div className='header-container'>
-            <MdMenu color='white' size='32' onClick={() => setShow(!show)} className='burger' />
+            <div  onClick={() => setShow(!show)} className='burger'>
+                {
+                show 
+                ? <MdClose color='white' size='32'/>
+                : <MdMenu color='white' size='32'/>
+                }
+            </div>
         <header className={show ? 'mobile' : ''} onClick={ () => setShow(false) }>
             <Link to={process.env.PUBLIC_URL + '/projects'} getProps={isPartiallyActive}>projects</Link>
+            <Link to={process.env.PUBLIC_URL + '/projects/animated'} getProps={isPartiallyActive}>animated</Link>
             <Link to={process.env.PUBLIC_URL + '/contact'}>contact</Link>
             <Link to={process.env.PUBLIC_URL + '/login'}>{
                 props.signedIn 

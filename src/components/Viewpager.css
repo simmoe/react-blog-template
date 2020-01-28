@@ -1,0 +1,68 @@
+/* 
+STEPS
+
+1 create a new component 
+wrap the actual div map function in three surrounding containers: main, container and root
+give the main element fullpage size
+if you need stuff below, position it and give it a z-index
+if you need content inside, just open the inner animated.div
+
+*/
+
+* {
+    box-sizing: border-box;
+  }
+  
+#pager-main{
+    height:100vh;
+    width:100vw;
+    display:grid;
+    place-items: center;
+}
+
+#pager-container {
+    overscroll-behavior-y: contain;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    user-select: none;
+    font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto,
+      segoe ui, arial, sans-serif;
+    position: fixed;
+    overflow: hidden;
+  }
+
+  
+#pager-root {
+    position: fixed;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    cursor: url('https://uploads.codesandbox.io/uploads/user/b3e56831-8b98-4fee-b941-0e27f39883ab/Ad1_-cursor.png') 39 39,
+      auto;
+  }
+  
+  #pager-root > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+  
+  #pager-root > div > div {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    box-shadow: 0 62.5px 125px -25px rgba(50, 50, 73, 0.5), 0 37.5px 75px -37.5px rgba(0, 0, 0, 0.6);
+  }
+  
+  #pager-root .content{
+      display:grid;
+      width:100vw;
+      height:100vh;
+      place-items:center;
+  }
