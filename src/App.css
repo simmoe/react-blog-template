@@ -16,7 +16,7 @@ a{
 
 .edit-icon{
   fill:#111;
-  transform:scale(1.4);
+  transform:scale(1.8);
   cursor: pointer;
 }
 
@@ -44,29 +44,11 @@ main.login img{
   width:100px;
 }
 
-main.animated{
-  padding:0;
-}
-
-
 label .add{
   text-align: center;
   padding:.3rem;
   width:8rem;
   border:1px solid #111;
-}
-
-
-.my-masonry-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
-  display: flex;
-  margin-left: -30px; /* gutter size offset */
-  width: auto;
-}
-.my-masonry-grid_column {
-  padding-left: 30px; /* gutter size */
-  background-clip: padding-box;
 }
  
 @media (max-width:1000px){

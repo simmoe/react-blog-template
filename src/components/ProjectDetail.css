@@ -2,6 +2,8 @@
 main.project-detail{
     padding:0;
     justify-content: start;
+    background:white;
+    position:relative;
 }
 
 .parallax-overlay{

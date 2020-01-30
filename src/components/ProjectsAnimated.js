@@ -1,22 +1,24 @@
-// HOME JS
-
 import React, {useState, useEffect} from 'react'
 import firebase from './firebase'
 import Viewpager from './Viewpager'
-import {IoIosAddCircle} from 'react-icons/io'
+import ProjectDetail from './ProjectDetail'
 import { navigate } from '@reach/router'
+import '@reach/router'
+import './ProjectsAnimated.css'
 
 const ProjectsAnimated = (props) => {
     const [projects, setProjects] = useState([])
+    const [id, setId] = useState()
 
     useEffect(() => {
         firebase
             .firestore()
             .collection('projects')
             .orderBy('year', 'desc')
-            .onSnapshot(snapshot => 
+            .onSnapshot(snapshot => {
+                setId(snapshot.docs[0].id)
                 setProjects(snapshot.docs)
-            )
+            })
     }, [])
 
     const addProject = () => {
@@ -30,19 +32,22 @@ const ProjectsAnimated = (props) => {
         }).catch( error => console.log(error))
     } 
 
+    const updateId = i => {
+        console.log(i)
+        if(projects){
+            setId(projects[i].id)
+        }
+    }
+ 
     return (
         <main className='animated'>
         {
-            props.signedIn &&
-            <div className='admin-actions' onClick={addProject}>
-                <IoIosAddCircle className='edit-icon' />
-            </div>
-        }
-
-        {
             projects.length > 0 
         ? 
-            <Viewpager projects={projects} signedIn={props.signedIn}/>
+            <>
+            <Viewpager updateId={updateId} addProject={addProject} projects={projects} signedIn={props.signedIn}/>
+            <ProjectDetail id={id}/>
+            </>
         :
             <p>Getting projects, hold on...</p>
         }

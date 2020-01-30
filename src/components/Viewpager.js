@@ -6,6 +6,7 @@ import './Viewpager.css'
 import { Link, navigate } from '@reach/router'
 import { MdDelete } from 'react-icons/md'
 import { FaCode } from 'react-icons/fa'
+import {IoIosAddCircle} from 'react-icons/io'
 import firebase from './firebase'
 
 const Viewpager = props => {
@@ -25,6 +26,7 @@ const Viewpager = props => {
       if (i < index.current - 1 || i > index.current + 1) return { display: 'none' }
       const x = (i - index.current) * window.innerWidth + (down ? xDelta : 0)
       const sc = down ? 1 - distance / window.innerWidth / 2 : 1
+      props.updateId(index.current)
       return { x, sc, display: 'block' }
     })
   })
@@ -37,7 +39,12 @@ const Viewpager = props => {
                     <animated.div 
                         {...bind()} key={i} style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
                         <animated.div 
-                            style={{ transform: sc.interpolate(s => `scale(${s})`), backgroundImage: `url(${pages[i].data().defaultImage})` }} >
+                            style={
+                                { 
+                                    transform: sc.interpolate(s => `scale(${s})`), 
+                                    backgroundImage: `url(${pages[i].data().defaultImage})`,
+                                    backgroundPosition:'center center'
+                                }} >
                                 <div className='slider-content'>
                                     <div>
                                         <h1>{pages[i].data().title}</h1>
@@ -48,16 +55,17 @@ const Viewpager = props => {
                                     </div>
                                     {
                                     props.signedIn &&                                        
-                                    <div className='admin'>
-                                        <Link to={process.env.PUBLIC_URL + '/edit/' + pages[i].id} className='edit-icons'>
-                                            <FaCode className='edit-icon' />
+                                    <div className='admin'>                                        
+                                        <IoIosAddCircle onClick={props.addProject} />
+                                        <Link to={process.env.PUBLIC_URL + '/edit/' + pages[i].id}>
+                                            <FaCode/>
                                         </Link>
-                                        <MdDelete onClick={()=>deleteProject(pages[i].id)} className='edit-icon' />
+                                        <MdDelete onClick={()=>deleteProject(pages[i].id)} />
                                     </div>
                                     }
                                 </div>
                         </animated.div>
-                    </animated.div>
+                    </animated.div>                    
                 ))
                 }
             </div>

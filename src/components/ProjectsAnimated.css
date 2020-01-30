@@ -1,0 +1,14 @@
+main.animated{
+    padding:0;
+}
+
+.animated .admin {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 1rem;
+  }
+  
+  
