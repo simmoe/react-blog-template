@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import firebase from './firebase'
+import { Link } from '@reach/router'
 import FileUploader from 'react-firebase-file-uploader'
 import './Edit.css'
 
@@ -44,7 +45,7 @@ const Edit = (props) => {
         e.preventDefault() //abort reloading the page
         setStatus('updating, please hold...')
         firebase.firestore().collection('projects').doc(props.id).update(project)
-        .then(()=>{setStatus("project updated")})
+        .then(()=>{setStatus('project updated')})
         .catch(err => {
             setStatus("Error saving project: " + err.message)
         })
@@ -146,6 +147,7 @@ const Edit = (props) => {
                 <button type='submit'>save</button>
             </form>
             <p>{status}</p>
+            <Link to={'/projects/'+props.id}>view</Link>
             </>
         }
         </main>

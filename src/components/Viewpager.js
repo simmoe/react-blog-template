@@ -49,7 +49,7 @@ const Viewpager = props => {
                                     <div>
                                         <h1>{pages[i].data().title}</h1>
                                         <p onClick={ 
-                                            () => navigate(process.env.PUBLIC_URL + '/projects/' + pages[i].id)}>
+                                            () => navigate('/projects/' + pages[i].id)}>
                                             view project
                                         </p>
                                     </div>
@@ -57,7 +57,7 @@ const Viewpager = props => {
                                     props.signedIn &&                                        
                                     <div className='admin'>                                        
                                         <IoIosAddCircle onClick={props.addProject} />
-                                        <Link to={process.env.PUBLIC_URL + '/edit/' + pages[i].id}>
+                                        <Link to={'/edit/' + pages[i].id}>
                                             <FaCode/>
                                         </Link>
                                         <MdDelete onClick={()=>deleteProject(pages[i].id)} />

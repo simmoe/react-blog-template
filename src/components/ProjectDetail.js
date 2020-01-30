@@ -57,8 +57,8 @@ const ProjectDetail = props => {
                 </div>
                 <div className='project-content'>
                     <div className='admin-actions pager'>
-                        <Link to={process.env.PUBLIC_URL + '/projects/' + prev}>prev</Link>
-                        <Link to={process.env.PUBLIC_URL + '/projects/' + next}>next</Link>
+                        <Link to={'/projects/' + prev}>prev</Link>
+                        <Link to={'/projects/' + next}>next</Link>
                     </div>
 
                     <div className='project-images'>                    

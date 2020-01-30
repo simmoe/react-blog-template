@@ -19,7 +19,17 @@ main.project-detail{
 
 .parallax-overlay > div{
     position:sticky;
-    top:40vh;
+    top:50vh;
+}
+
+.parallax-overlay h1{
+    font-weight:300;
+    padding:0;
+    margin: 0;
+}
+.parallax-overlay p{
+    font-weight:bold;
+    margin:0 0 2rem 0;
 }
 
 

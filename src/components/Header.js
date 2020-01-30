@@ -25,9 +25,9 @@ const Header = (props) => {
                 }
             </div>
         <header className={show ? 'mobile' : ''} onClick={ () => setShow(false) }>
-            <Link to={process.env.PUBLIC_URL + '/projects'} getProps={isPartiallyActive}>projects</Link>
-            <Link to={process.env.PUBLIC_URL + '/contact'}>contact</Link>
-            <Link to={process.env.PUBLIC_URL + '/login'}>{
+            <Link to={'/projects'} getProps={isPartiallyActive}>projects</Link>
+            <Link to={'/contact'}>contact</Link>
+            <Link to={'/login'}>{
                 props.signedIn 
                 ? 'profile' 
                 : 'login'

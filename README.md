@@ -159,7 +159,7 @@ And lastly use the new component (Masonry) to create the grid - don't forget to 
 ## Edit projects - Edit.js
 If the user is signed in, Project.js shows a small icon on each entry, that links to a path called /edit/[projectid]. This Routing concept is very smart, and comes from reach/router. In App.js you can see how the Router is setup to catch any path, that corresponds to /edit + some id string:
 ````javascript
-<Edit path={process.env.PUBLIC_URL + '/edit/:id'} />
+<Edit path={'/edit/:id'} />
 ````
 This means that the component in Edit.js will catch all these links, and at the same time get a reference to that specific document in the database. Getting that parameter is ridiculously simple: it resides in the components *props.id* property. With that id in hand, we can easily fetch the document data from Firebase, in useEffect():
 

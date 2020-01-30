@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import firebase from './firebase'
 import Project from './Project'
 import {IoIosAddCircle} from 'react-icons/io'
-import Masonry from 'react-masonry-css' 
+import './Projects.css' 
 import { navigate } from '@reach/router'
 
 const Projects = (props) => {
@@ -32,7 +32,7 @@ const Projects = (props) => {
     } 
 
     return (
-        <main className='home'>
+        <main className='projects'>
         {
             props.signedIn &&
             <div className='admin-actions' onClick={addProject}>
@@ -43,24 +43,17 @@ const Projects = (props) => {
         {
             projects.length > 0 
         ? 
-        <Masonry
-            breakpointCols={{
-                default: 3,
-                1500: 2,
-                1200: 1
-              }}
-            className="my-masonry-grid"
-            columnClassName="my-masonry-grid_column">
-                {
-                    projects.map(
-                        (doc, index) => 
-                        <Project 
-                            next={projects[index < (projects.length -1) ? index + 1 : 0].id} 
-                            prev={projects[index !==0 ? index -1 : projects.length -1].id} 
-                            key={doc.id} id={doc.id} project={doc.data()} signedIn={props.signedIn}/>
-                    )
-                }
-        </Masonry>
+        <div className='projects-container'>
+            {
+                projects.map(
+                    (doc, index) => 
+                    <Project 
+                        next={projects[index < (projects.length -1) ? index + 1 : 0].id} 
+                        prev={projects[index !==0 ? index -1 : projects.length -1].id} 
+                        key={doc.id} id={doc.id} project={doc.data()} signedIn={props.signedIn}/>
+                )
+            }
+        </div>
         :
             <p>Getting projects, hold on...</p>
         }
