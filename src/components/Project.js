@@ -19,7 +19,7 @@ const Project = (props) => {
             props.project.defaultImage && 
                 <img src={props.project.defaultImage} alt='hei' />
             }
-            <div className='project-inner' onClick={ () => navigate('./projects/' + props.id)}>
+            <div className='project-inner' onClick={ () => navigate('/projects/' + props.id)}>
                 <div>
                     <h1>{props.project.title}</h1>
                     <div className='project-year'>{props.project.year}</div>
