@@ -1,38 +1,38 @@
 /* PROJECT CSS */
 
-.project{
-    min-height:350px;
-    min-width:350px;
-    padding:2rem;
-    background: #eee;
-    position:relative;
-    margin-bottom:2rem;
-    font-size:.9rem;
-  }
-
-  .project h1{
-    margin:.4rem 0 .2rem 0;
-    padding:0;
-  }
-
-  .admin {
-    position:absolute;
-    bottom:1rem;
-    right:1rem;
-    display:grid;
-    grid-auto-flow: column;
-    gap:1rem;
+.project {
+  min-height: 350px;
+  min-width: 350px;
+  padding: 2rem;
+  background: #eee;
+  position: relative;
+  margin-bottom: 2rem;
+  font-size: .9rem;
 }
+
+.project h1 {
+  margin: .4rem 0 .2rem 0;
+  padding: 0;
+}
+
+.admin {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  gap: 1rem;
+}
+
 .project img {
-  max-width:100%;
+  width: 100%;
 }
 
-.project-year{
-  font-weight:bold;
+.project-year {
+  font-weight: bold;
 }
-.project-byline{
+
+.project-byline {
   text-transform: uppercase;
-  padding:1rem 0 1rem 0;
+  padding: 1rem 0 1rem 0;
 }
-
- 

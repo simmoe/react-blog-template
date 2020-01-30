@@ -2,7 +2,7 @@
   "name": "react-blog-template",
   "homepage": "https://simmoe.github.io/react-blog-template",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "lodash-es": "4.17.11",
     "react-use-gesture": "5.0.0",

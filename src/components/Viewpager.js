@@ -38,13 +38,13 @@ const Viewpager = props => {
                         {...bind()} key={i} style={{ display, transform: x.interpolate(x => `translate3d(${x}px,0,0)`) }}>
                         <animated.div 
                             style={{ transform: sc.interpolate(s => `scale(${s})`), backgroundImage: `url(${pages[i].data().defaultImage})` }} >
-                                <div className='content'>
-                                    <div style={{color:'white',fontSize:'2rem'}}>
+                                <div className='slider-content'>
+                                    <div>
                                         <h1>{pages[i].data().title}</h1>
-                                        <h2 onClick={ 
+                                        <p onClick={ 
                                             () => navigate(process.env.PUBLIC_URL + '/projects/' + pages[i].id)}>
                                             view project
-                                        </h2>
+                                        </p>
                                     </div>
                                     {
                                     props.signedIn &&                                        

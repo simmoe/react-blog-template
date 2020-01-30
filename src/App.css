@@ -7,7 +7,6 @@
 }
 body, html{
   font-family: 'Open Sans';
-  overflow-y: scroll;
 }
 
 a{
@@ -70,3 +69,13 @@ label .add{
   background-clip: padding-box;
 }
  
+@media (max-width:1000px){
+  main{
+    padding:20vh 5vh;
+  }
+}
+@media (max-width:600px){
+  main{
+    padding:10vh 0 5vh 0;
+  }
+}

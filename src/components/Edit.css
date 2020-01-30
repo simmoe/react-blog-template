@@ -70,3 +70,9 @@ button {
     color: #e6e6ea;
     position: absolute;
 }
+
+@media (max-width:600px){
+    main.edit {
+        padding:0 1rem 0 1rem;
+    }
+}

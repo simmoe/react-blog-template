@@ -6,7 +6,7 @@ import Viewpager from './Viewpager'
 import {IoIosAddCircle} from 'react-icons/io'
 import { navigate } from '@reach/router'
 
-const Projects = (props) => {
+const ProjectsAnimated = (props) => {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
@@ -51,4 +51,4 @@ const Projects = (props) => {
     )
 }
 
-export default Projects
+export default ProjectsAnimated

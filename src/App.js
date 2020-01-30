@@ -11,6 +11,7 @@ import ProjectDetail from './components/ProjectDetail'
 import ProjectsAnimated from './components/ProjectsAnimated'
 
 const Default = () => {
+    console.log('caught by default')
     navigate('/projects')
     return( <></>)
 }
@@ -34,11 +35,11 @@ const App = () => {
     return (
         <div>
             <Header signedIn={signedIn} />            
-            <Router primary={false}>
-                <Default path='/' Default />
+            <Router>
+                <Default path={'/'} Default />
                 <Projects path={process.env.PUBLIC_URL + '/projects'} signedIn={signedIn} />
                 <ProjectsAnimated path={process.env.PUBLIC_URL + '/projects/animated'} signedIn={signedIn} />
-                <ProjectDetail path={process.env.PUBLIC_URL + '/projects/:id'} />
+                <ProjectDetail  path={process.env.PUBLIC_URL + '/projects/:id'} />
                 <Contact path={process.env.PUBLIC_URL + '/contact'} signedIn={signedIn} />
                 <Login path={process.env.PUBLIC_URL + '/login'} signedIn={signedIn} />
                 <Edit path={process.env.PUBLIC_URL + '/edit/:id'} />

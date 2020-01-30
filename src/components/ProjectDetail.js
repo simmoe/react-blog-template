@@ -1,10 +1,8 @@
-// PROJECTDETAIL JS
 import React, {useEffect, useState} from 'react'
 import firebase from './firebase'
 import { Link } from "@reach/router"
 import './ProjectDetail.css'
 import parse from 'html-react-parser'
-
 const ProjectDetail = props => {  
     const [project, setProject] = useState()
     const [prev, setPrev] = useState(0)
@@ -34,9 +32,9 @@ const ProjectDetail = props => {
     if(project){
         styles = {
             parallax:{
+                backgroundImage: 'url(' + project.defaultImage + ')',
                 height:'100vh',
                 width:'100vw',
-                backgroundImage: 'url(' + project.defaultImage + ')',
                 backgroundAttachment:'fixed',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center center',
@@ -54,12 +52,6 @@ const ProjectDetail = props => {
                         <div>
                             <h1>{project.title}</h1>
                             <p>{project.year}</p>
-                            <div className='project-features'>
-                                {project.javascript && <li>Javascript</li>}
-                                {project.reactjs && <li>React JS</li>}
-                                {project.userOriented && <li>User oriented</li>}
-                                {project.design && <li>Design</li>}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -76,10 +68,18 @@ const ProjectDetail = props => {
                     </div>                    
 
                     <div>{parse(project.description)}</div>
+                    <div className='project-features'>
+                        <ul>
+                        {project.javascript && <li>Javascript</li>}
+                        {project.reactjs && <li>React JS</li>}
+                        {project.userOriented && <li>User oriented</li>}
+                        {project.design && <li>Design</li>}
+                        </ul>
+                    </div>
                 </div>
             </div>
             :
-            <h2 style={{textAlign:'center'}}>Fetching project, hold on...</h2>
+            <h2 style={{width:'100vw',textAlign:'center'}}>Fetching project, hold on...</h2>
             }
         </main>
     )
