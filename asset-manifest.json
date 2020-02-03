@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/react-blog-template/static/css/main.b22c0288.chunk.css",
-    "main.js": "/react-blog-template/static/js/main.d467b08a.chunk.js",
-    "main.js.map": "/react-blog-template/static/js/main.d467b08a.chunk.js.map",
+    "main.js": "/react-blog-template/static/js/main.d703ab66.chunk.js",
+    "main.js.map": "/react-blog-template/static/js/main.d703ab66.chunk.js.map",
     "runtime-main.js": "/react-blog-template/static/js/runtime-main.70ce4216.js",
     "runtime-main.js.map": "/react-blog-template/static/js/runtime-main.70ce4216.js.map",
     "static/js/2.bb28445a.chunk.js": "/react-blog-template/static/js/2.bb28445a.chunk.js",
     "static/js/2.bb28445a.chunk.js.map": "/react-blog-template/static/js/2.bb28445a.chunk.js.map",
     "index.html": "/react-blog-template/index.html",
-    "precache-manifest.3cd85bcb063d873037e6ba878cb1c733.js": "/react-blog-template/precache-manifest.3cd85bcb063d873037e6ba878cb1c733.js",
+    "precache-manifest.6612a9722ab163cc058e92c3358d0e45.js": "/react-blog-template/precache-manifest.6612a9722ab163cc058e92c3358d0e45.js",
     "service-worker.js": "/react-blog-template/service-worker.js",
     "static/css/main.b22c0288.chunk.css.map": "/react-blog-template/static/css/main.b22c0288.chunk.css.map",
     "static/js/2.bb28445a.chunk.js.LICENSE": "/react-blog-template/static/js/2.bb28445a.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.70ce4216.js",
     "static/js/2.bb28445a.chunk.js",
     "static/css/main.b22c0288.chunk.css",
-    "static/js/main.d467b08a.chunk.js"
+    "static/js/main.d703ab66.chunk.js"
   ]
 }
